@@ -1,4 +1,7 @@
+package sortComparison;
+
 // -------------------------------------------------------------------------
+
 
 /**
  *  This class contains static methods that implementing sorting of an array of numbers
@@ -18,7 +21,7 @@ class SortComparison {
      * @return array sorted in ascending order.
      */
     static double[] insertionSort(double a[]) {
-        if(a!=null) {
+        if (a != null) {
             double temp;
             for (int i = 1; i < a.length; i++) {
                 for (int j = i; j > 0; j--) {
@@ -31,7 +34,7 @@ class SortComparison {
             }
         }
         return a;
-    }//end insertionsort
+    }
 
     /**
      * Sorts an array of doubles using Selection Sort.
@@ -41,7 +44,7 @@ class SortComparison {
      * @return array sorted in ascending order
      */
     static double[] selectionSort(double a[]) {
-        if (a!= null) {
+        if (a != null) {
             for (int i = 0; i < a.length; i++) {
                 int min_idx = i;
                 for (int j = i + 1; j < a.length; j++) {
@@ -57,7 +60,7 @@ class SortComparison {
         return a;
 
 
-    }//end selectionsort
+    }
 
     /**
      * Sorts an array of doubles using Quick Sort.
@@ -66,32 +69,42 @@ class SortComparison {
      * @param a: An unsorted array of doubles.
      * @return array sorted in ascending order
      */
-    public static double[] quickSort(double a[]) {
-        return quickSort(a, 0, a.length - 1);
+    static double[] quickSort(double[] a) {
+        if (a == null) {
+            return a;
+        } else {
+            return sortQuick(a, 0, a.length - 1);
+        }
     }
 
-    private static double[] quickSort(double a[], int lo, int hi) {
-        if (a != null) {
-        if (hi <= lo) return a;
-        int pivot = partition(a, lo, hi);
-        quickSort(a, lo, pivot - 1);
-        quickSort(a, pivot + 1, hi);
-    }
+    static double[] sortQuick(double[] a, int lo, int hi) {
+
+        if (lo < hi) {
+            int pivot = partition(a, lo, hi);
+            sortQuick(a, lo, pivot - 1);
+            sortQuick(a, pivot + 1, hi);
+        }
         return a;
     }
 
-    private static int partition(double[] numbers, int lo, int hi) {
+    static int partition(double[] numbers, int lo, int hi) {
         int i = lo;
         int j = hi + 1;
         double pivot = numbers[lo];
         while (true) {
-            while (numbers[++i] < pivot) {
-                if (i == hi) break;
+            while ((numbers[++i] < pivot)) {
+                if (i == hi) {
+                    break;
+                }
             }
-            while (pivot < numbers[--j]) {
-                if (j == lo) break;
+            while ((pivot < (numbers[--j]))) {
+                if (j == lo) {
+                    break;
+                }
             }
-            if (i >= j) break;
+            if (i >= j) {
+                break;
+            }
             double temp = numbers[i];
             numbers[i] = numbers[j];
             numbers[j] = temp;
@@ -100,7 +113,7 @@ class SortComparison {
         numbers[j] = pivot;
         return j;
     }
-    //end quicksort
+    
 
     /**
      * Sorts an array of doubles using Merge Sort.
@@ -129,11 +142,6 @@ class SortComparison {
         }
         return a;
     }//end mergesortIterative
-
-    public static void sort(double[] a) {
-        double[] aux = new double[a.length];
-        sort(a, aux, 0, a.length - 1);
-    }
 
     private static void sort(double[] a, double[] aux, int lo, int hi) {
         if (hi <= lo) {
@@ -182,14 +190,8 @@ class SortComparison {
     }//end mergeSortRecursive
 
 
-
-
-
-
-
     public static void main(String[] args) {
-
-        //todo: do experiments as per assignment instructions
     }
+}
 
-}//end class
+
