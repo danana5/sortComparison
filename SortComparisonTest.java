@@ -30,7 +30,13 @@ public class SortComparisonTest
     @Test
     public void testEmpty()
     {
+        double[] array = null;
 
+        assertEquals("testing on a an empty array", null, insertionSort(array));
+        assertEquals("testing on a an empty array", null, selectionSort(array));
+        assertEquals("testing on a an empty array", null, quickSort(array));
+        assertEquals("testing on an empty array", null, mergeSortIterative(array));
+        assertEquals("testing on an empty array", null, mergerSortRecursive(array));
     }
 
 
